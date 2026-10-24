@@ -5,6 +5,8 @@ namespace Tomos_Daria_Naomi_Lab2.Data
 {
     public class Tomos_Daria_Naomi_Lab2Context : DbContext
     {
+        public DbSet<Tomos_Daria_Naomi_Lab2.Models.BookCategory> BookCategory { get; set; } = default!;
+        public DbSet<Tomos_Daria_Naomi_Lab2.Models.Category> Category { get; set; } = default!;
         public Tomos_Daria_Naomi_Lab2Context(DbContextOptions<Tomos_Daria_Naomi_Lab2Context> options)
             : base(options)
         {
