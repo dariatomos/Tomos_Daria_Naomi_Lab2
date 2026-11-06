@@ -1,9 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using Tomos_Daria_Naomi_Lab2.Data;
+using Microsoft.AspNetCore.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("Tomos_Daria_Naomi_Lab2Context") ?? throw new InvalidOperationException("Connection string 'Tomos_Daria_Naomi_Lab2Context' not found.");
 
 builder.Services.AddDbContext<Tomos_Daria_Naomi_Lab2Context>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddDbContext<LibraryIdentityContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<LibraryIdentityContext>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
